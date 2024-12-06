@@ -11,40 +11,50 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('localhost:27017/Registros/usuarios', { nombre, correo, contraseña });
+      await axios.post('http://localhost:3001/registro', { nombre, correo, contraseña });
       alert('Registro exitoso. Ahora puedes iniciar sesión.');
-      navigate('/');
+      navigate('/');  // Redirige al login después de un registro exitoso
     } catch (error) {
       alert('Error al registrar usuario.');
     }
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <h1 className="text-2xl font-bold mb-4">Regístrate</h1>
-      <input 
-        type="text" 
-        placeholder="Nombre" 
-        value={nombre} 
-        onChange={(e) => setNombre(e.target.value)} 
-        required 
-      />
-      <input 
-        type="email" 
-        placeholder="Correo" 
-        value={correo} 
-        onChange={(e) => setCorreo(e.target.value)} 
-        required 
-      />
-      <input 
-        type="password" 
-        placeholder="Contraseña" 
-        value={contraseña} 
-        onChange={(e) => setContraseña(e.target.value)} 
-        required 
-      />
-      <button type="submit">Registrar</button>
-    </form>
+    <div style={{
+      backgroundImage: 'url("https://i.pinimg.com/736x/c5/f5/5b/c5f55bde0681bce37b384a94498df9ce.jpg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <form onSubmit={handleRegister}>
+        <h1 className="text-2xl font-bold mb-4">Regístrate</h1>
+        <input 
+          type="text" 
+          placeholder="Nombre" 
+          value={nombre} 
+          onChange={(e) => setNombre(e.target.value)} 
+          required 
+        />
+        <input 
+          type="email" 
+          placeholder="Correo" 
+          value={correo} 
+          onChange={(e) => setCorreo(e.target.value)} 
+          required 
+        />
+        <input 
+          type="password" 
+          placeholder="Contraseña" 
+          value={contraseña} 
+          onChange={(e) => setContraseña(e.target.value)} 
+          required 
+        />
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
   );
 };
 
